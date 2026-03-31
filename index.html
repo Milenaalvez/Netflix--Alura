@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX - Selecione um Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<!-- Botão tema -->
+<button id="toggleTema">🌙</button>
+
+<!-- Som -->
+<audio id="clickSound" src="click.mp3"></audio>
+
+<header>
+    <h1>NETFLIX</h1>
+</header>
+
+<main>
+    <section class="perfis">
+        <h2>Quem está assistindo?</h2>
+
+        <div class="container">
+
+            <button class="perfil" data-link="perfil.html">
+                <figure>
+                    <img src="img/usuario1.png">
+                    <figcaption>Milena</figcaption>
+                </figure>
+            </button>
+
+            <button class="perfil" data-link="perfil.html">
+                <figure>
+                    <img src="img/usuario2.png">
+                    <figcaption>Gabriel</figcaption>
+                </figure>
+            </button>
+
+            <button class="perfil" data-link="perfil.html">
+                <figure>
+                    <img src="img/usuario3.png">
+                    <figcaption>Larissa</figcaption>
+                </figure>
+            </button>
+
+            <button class="perfil" data-link="perfil.html">
+                <figure>
+                    <img src="img/usuario4.png">
+                    <figcaption>Ana</figcaption>
+                </figure>
+            </button>
+
+        </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
