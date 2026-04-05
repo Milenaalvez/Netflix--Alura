@@ -1,60 +1,32 @@
-/* ================= LOADER ================= */
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
+document.addEventListener("DOMContentLoaded", () => {
 
-    setTimeout(() => {
-        loader.classList.add('hidden');
-    }, 800);
-});
+    const perfis = document.querySelectorAll('.perfil');
 
-/* ================= TEMA ================= */
-const botaoTema = document.getElementById('toggleTema');
+    perfis.forEach(botao => {
+        botao.addEventListener('click', () => {
 
-// carregar tema salvo
-if (localStorage.getItem('tema') === 'light') {
-    document.body.classList.add('light');
-    botaoTema.textContent = '☀️';
-}
+            const nome = botao.querySelector('figcaption')?.innerText;
+            const img = botao.querySelector('img')?.src;
 
-botaoTema.addEventListener('click', () => {
-    document.body.classList.toggle('light');
+            // segurança (evita bug se algo faltar)
+            if (!nome || !img) return;
 
-    const modoLight = document.body.classList.contains('light');
+            // 💾 salvar perfil
+            localStorage.setItem('perfil', nome);
+            localStorage.setItem('perfilImg', img);
 
-    botaoTema.textContent = modoLight ? '☀️' : '🌙';
+            // 🔊 som
+            const som = document.getElementById('clickSound');
+            if (som) {
+                som.currentTime = 0;
+                som.play().catch(() => {});
+            }
 
-    localStorage.setItem('tema', modoLight ? 'light' : 'dark');
-});
-
-/* ================= SOM ================= */
-const som = document.getElementById('clickSound');
-
-/* ================= PERFIS ================= */
-document.querySelectorAll('.perfil').forEach(botao => {
-    botao.addEventListener('click', () => {
-
-        const nome = botao.querySelector('figcaption').innerText;
-        const destino = botao.getAttribute('data-link');
-
-        // som
-        som.currentTime = 0;
-        som.play().catch(() => {});
-
-        // salva perfil
-        localStorage.setItem('perfil', nome);
-
-        // efeito seleção
-        document.querySelectorAll('.perfil').forEach(p => {
-            p.classList.remove('selecionado');
+            // 🚀 redireciona
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 1300);
         });
+    })
 
-        botao.classList.add('selecionado');
-
-        // 🔥 ANIMAÇÃO DE SAÍDA (correto agora)
-        document.body.classList.add('fade-out');
-
-        setTimeout(() => {
-            window.location.href = destino;
-        }, 500);
-    });
 });
